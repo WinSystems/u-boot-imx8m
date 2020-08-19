@@ -24,18 +24,20 @@
 #include <power/pfuze100_pmic.h>
 #include <spl.h>
 #include "../common/pfuze.h"
+#include <fuse.h>
 
 DECLARE_GLOBAL_DATA_PTR;
 
-extern struct dram_timing_info dram_timing_b0;
-
 static void spl_dram_init(void)
 {
+	unsigned int val;
+	fuse_read(9, 2, &val);
+
 	/* ddr init */
-	if ((get_cpu_rev() & 0xfff) == CHIP_REV_2_1)
-		ddr_init(&dram_timing);
+	if (val && 0x1)
+		ddr_init(&dram_timing_2G);
 	else
-		ddr_init(&dram_timing_b0);
+		ddr_init(&dram_timing_4G);
 }
 
 #define I2C_PAD_CTRL	(PAD_CTL_DSE6 | PAD_CTL_HYS | PAD_CTL_PUE)
