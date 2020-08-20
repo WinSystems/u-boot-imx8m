@@ -9,7 +9,10 @@
  */
 
 #include <linux/kernel.h>
-#include <asm/arch/imx8m_ddr.h>
+#include <common.h>
+#include <asm/arch/ddr.h>
+#include <asm/arch/lpddr4_define.h>
+
 
 struct dram_cfg_param ddr_ddrc_cfg_2G[] = {
 	/** Initialize DDRC registers **/
