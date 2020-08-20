@@ -28,6 +28,9 @@
 
 DECLARE_GLOBAL_DATA_PTR;
 
+extern struct dram_timing_info dram_timing_2G;
+extern struct dram_timing_info dram_timing_4G;
+
 static void spl_dram_init(void)
 {
 	unsigned int val;
