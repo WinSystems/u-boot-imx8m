@@ -211,16 +211,20 @@ int dram_init(void)
 	phys_size_t sdram_size;
 	int ret;
 
+        gd->ram_size = get_ram_size((void *)PHYS_SDRAM, PHYS_SDRAM_SIZE);
+
+	/*
 	ret = board_phys_sdram_size(&sdram_size);
 	if (ret)
 		return ret;
-
+	*/
 	/* rom_pointer[1] contains the size of TEE occupies */
+	/*
 	if (rom_pointer[1])
 		gd->ram_size = sdram_size - rom_pointer[1];
 	else
 		gd->ram_size = sdram_size;
-
+	*/
 #ifdef PHYS_SDRAM_2_SIZE
 	gd->ram_size += PHYS_SDRAM_2_SIZE;
 #endif
@@ -244,9 +248,11 @@ int dram_init_banksize(void)
 		phys_size_t optee_size = (size_t)rom_pointer[1];
 
 		gd->bd->bi_dram[bank].size = optee_start -gd->bd->bi_dram[bank].start;
+		/*
 		if ((optee_start + optee_size) < (PHYS_SDRAM + sdram_size)) {
 			if ( ++bank >= CONFIG_NR_DRAM_BANKS) {
 				puts("CONFIG_NR_DRAM_BANKS is not enough\n");
+				printf("rom_pointer 0: %x\n rom_pointer 1: %x\n", optee_start, optee_size);
 				return -1;
 			}
 
@@ -254,6 +260,7 @@ int dram_init_banksize(void)
 			gd->bd->bi_dram[bank].size = PHYS_SDRAM +
 				sdram_size - gd->bd->bi_dram[bank].start;
 		}
+		*/
 	} else {
 		gd->bd->bi_dram[bank].size = sdram_size;
 	}

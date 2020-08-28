@@ -55,6 +55,17 @@ int board_early_init_f(void)
 	return 0;
 }
 
+ulong board_get_usable_ram_top(ulong total_size)
+{
+	/* printf("board_get_usable_ram_top total_size is 0x%lx\n", \
+			total_size); */
+
+	if (gd->ram_top > 0x100000000)
+		gd->ram_top = 0x100000000;
+
+	return gd->ram_top;
+}
+
 #ifdef CONFIG_FSL_QSPI
 int board_qspi_init(void)
 {
