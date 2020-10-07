@@ -87,7 +87,7 @@ long get_ram_size(long *base, long maxsize)
 		}
 	}
 	*base = save_base;
-
+        puts("Reached Max Size\n");
 	return (maxsize);
 }
 

@@ -211,12 +211,12 @@ int dram_init(void)
 	phys_size_t sdram_size;
 	int ret;
 
-        //gd->ram_size = get_ram_size((void *)PHYS_SDRAM, PHYS_SDRAM_SIZE);
+        gd->ram_size = get_ram_size((void *)PHYS_SDRAM, PHYS_SDRAM_SIZE);
 
-	ret = board_phys_sdram_size(&sdram_size);
-	if (ret)
-		return ret;
-	gd->ram_size = sdram_size;
+	//ret = board_phys_sdram_size(&sdram_size);
+	//if (ret)
+	//	return ret;
+	//gd->ram_size = sdram_size;
 
 	/* rom_pointer[1] contains the size of TEE occupies */
 	/*
