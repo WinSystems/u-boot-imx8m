@@ -251,7 +251,7 @@ int dram_init_banksize(void)
 				printf("rom_pointer 0: %x\n rom_pointer 1: %x\n", optee_start, optee_size);
 				return -1;
 			}
-
+			printf("optee start: %x\n optee size: %x\n", optee_start, optee_size);
 			gd->bd->bi_dram[bank].start = optee_start + optee_size;
 			gd->bd->bi_dram[bank].size = PHYS_SDRAM +
 				sdram_size - gd->bd->bi_dram[bank].start;
