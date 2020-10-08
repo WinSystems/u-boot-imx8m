@@ -10,7 +10,7 @@
 #include <asm/arch/imx-regs.h>
 #include "imx_env.h"
 
-#define CONFIG_NR_DRAM_BANKS 1
+#define CONFIG_NR_DRAM_BANKS 8
 
 #define CONFIG_SPL_MAX_SIZE		(148 * 1024)
 #define CONFIG_SYS_MONITOR_LEN		(512 * 1024)
