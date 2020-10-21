@@ -37,10 +37,14 @@ static void spl_dram_init(void)
 	fuse_read(9, 2, &val);
 
 	/* ddr init */
-	if (val && 0x1)
+	if (val & 0x1) {
 		ddr_init(&dram_timing_2G);
-	else
+		puts("Loading 2GB Config\n");
+	}
+	else {
 		ddr_init(&dram_timing_4G);
+		puts("Loading 4GB Config\n");
+	}
 }
 
 #define I2C_PAD_CTRL	(PAD_CTL_DSE6 | PAD_CTL_HYS | PAD_CTL_PUE)
